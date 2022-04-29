@@ -1,4 +1,4 @@
-const {Builder, Capabilities} = require('selenium-webdriver')
+const {Builder, Capabilities, By} = require('selenium-webdriver')
 require('chromedriver')
 
 const driver = new Builder().withCapabilities(Capabilities.chrome()).build();
@@ -22,6 +22,7 @@ afterAll(async () => {
 test('delete works', async () => {
 await driver.findElement(By.xpath('//input')).sendKeys('House of Flying Daggers\n');
 await driver.findElement(By.xpath('(//button)[2]')).click();
+await driver.sleep(2000);
 
 // const ul = await driver.findElement(By.xpath('//ul'))
 // expect(ul.hasChildren).toBeFalsy();
@@ -33,7 +34,7 @@ await driver.findElement(By.xpath('(//button)[2]')).click();
     const deleteMovie = async (driver) => {
     await addMovie(driver);
     await driver.findElement(By.xpath("//ul/li[1]/button")).click();
-    await driver.sleep(1000);
+    await driver.sleep(3000);
     const list = await driver.findElement(By.xpath("//ul"));
     expect(list.hasChildren).toBeFalsy();
   };
